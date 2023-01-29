@@ -4,6 +4,7 @@ import { SpeakersService } from 'src/app/services/speakers.service';
 import {MatTableDataSource, MatTableDataSourcePaginator} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort} from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-speakers-list',
@@ -11,14 +12,14 @@ import { MatSort} from '@angular/material/sort';
   styleUrls: ['./speakers-list.component.scss']
 })
 export class SpeakersListComponent implements  AfterViewInit{
-  public speakers: SpeakersInterface[] = [];
+  public speakers?: SpeakersInterface[] = [];
   public displayedColumns: string[] = [ 'email', 'gender', 'id', 'nat', 'name'];
   public  dataSource?: any;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
-  constructor(private speakersService: SpeakersService) { 
+  constructor(private speakersService: SpeakersService,private router: Router) { 
     
   }
   
@@ -31,19 +32,9 @@ export class SpeakersListComponent implements  AfterViewInit{
   }
 
   public getSpeakersInfo():void {
-     this.speakersService.getSpeaksers(3,40).subscribe({
-      next: (speakers:any) =>{
-        this.speakers = speakers.results.map((speaker: any) =>{
-        let speakerItem = {} as SpeakersInterface
-        speakerItem.email = speaker.email;
-        speakerItem.gender = speaker.gender;
-        speakerItem.id = speaker.id.value;
-        speakerItem.nat = speaker.nat;
-        speakerItem.name = `${speaker.name.first} ${speaker.name.last}`
-        speakerItem.picture = speaker.picture.thumbnail;
-        return speakerItem;
-       }
-        );
+     this.speakersService.getSpeaksers().subscribe({
+      next: (speakers) =>{
+        this.speakers = speakers.results;
         this.dataSource = new MatTableDataSource(this.speakers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -64,7 +55,12 @@ export class SpeakersListComponent implements  AfterViewInit{
   }
 
   public goToSpeakerDetail(speaker: any): void{
-    console.log('speaker',speaker);
+    this.router.navigate(['speaker-deatil'], {
+      state: {
+        response: { speaker },
+      },
+    });
   }
+  
 
 }

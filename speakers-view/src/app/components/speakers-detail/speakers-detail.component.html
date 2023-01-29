@@ -1,1 +1,22 @@
-<p>speakers-detail works!</p>
+
+<mat-card *ngIf="speaker" class="rando-user">
+    <mat-card-header>
+      <img mat-card-avatar src="{{ speaker.picture.thumbnail }}" alt="{{speaker.name.first}}'s Avatar'">
+      <mat-card-title>{{ speaker.name.first }} {{ speaker.name.last }}</mat-card-title>
+      <mat-card-subtitle>Random User Display</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="user-image" src="{{ speaker.picture.large }}">
+    <mat-card-content>
+      <ul>
+        <li><span>Gender:</span> {{ speaker.gender | titlecase }}</li>
+        
+        <li><span>Address:</span> {{ speaker.location.street.number }} {{ speaker.location.street.name | titlecase }}</li>
+        <li><span>City:</span> {{ speaker.location.city | titlecase }}</li>
+        <li><span>State:</span> {{ speaker.location.state }}</li>
+        <li><span>Phone:</span> {{ speaker.phone }}</li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="backToSpeakersList()">Back to user list</button>
+    </mat-card-actions>
+  </mat-card>

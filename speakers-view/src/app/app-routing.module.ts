@@ -10,7 +10,7 @@ const routes: Routes = [
    
   },
   {
-    path: 'speakers-deatil/:speakerId',
+    path: 'speaker-deatil',
     component: SpeakersDetailComponent,
    
   },

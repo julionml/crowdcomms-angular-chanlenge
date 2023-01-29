@@ -6,6 +6,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -18,7 +19,8 @@ import {MatInputModule} from '@angular/material/input';
     MatPaginatorModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
   exports: [
     MatTableModule,
@@ -26,7 +28,8 @@ import {MatInputModule} from '@angular/material/input';
     MatPaginatorModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ]
 })
 export class SharedModule { }
