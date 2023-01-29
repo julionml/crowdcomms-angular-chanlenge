@@ -1,0 +1,31 @@
+@import "@angular/material/prebuilt-themes/purple-green.css";
+
+ul {
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+li span {
+  font-weight: bold;
+}
+
+mat-card {
+  -webkit-box-shadow: 5px 6px 14px 3px rgba(0, 0, 0, 0.77) !important;
+  box-shadow: 5px 6px 14px 3px rgba(0, 0, 0, 0.77) !important;
+}
+
+mat-card-actions button {
+  width: 100%;
+  font-weight: bold;
+  transition: all .35s 0s ease-in-out;
+}
+
+.loading {
+  background-color: #69f0ae !important;
+  color: #000 !important;
+}
