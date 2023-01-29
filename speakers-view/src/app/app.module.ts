@@ -4,15 +4,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SpeakersListComponent } from './components/speakers-list/speakers-list.component';
+import { SpeakersDetailComponent } from './components/speakers-detail/speakers-detail.component';
+import { SpeakersService } from './services/speakers.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SpeakersListComponent,
+    SpeakersDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule,
+    
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
