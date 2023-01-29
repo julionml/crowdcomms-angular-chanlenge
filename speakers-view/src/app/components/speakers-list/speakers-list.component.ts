@@ -1,21 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SpeakersInterface } from 'src/app/models/speakers.interface';
 import { SpeakersService } from 'src/app/services/speakers.service';
+import {MatTableDataSource, MatTableDataSourcePaginator} from '@angular/material/table';
 
 @Component({
   selector: 'app-speakers-list',
   templateUrl: './speakers-list.component.html',
   styleUrls: ['./speakers-list.component.scss']
 })
-export class SpeakersListComponent implements OnInit{
+export class SpeakersListComponent implements OnInit, AfterViewInit{
   public speakers: SpeakersInterface[] = [];
+  public displayedColumns: string[] = [ 'email', 'gender', 'id', 'nat', 'name'];
+  public  dataSource?: any;
   constructor(private speakersService: SpeakersService) { }
+  
 
   ngOnInit(): void {
     this.getSpeakersInfo();
     
+    
   }
-  
+
+  ngAfterViewInit() {
+   
+  }
+
   public getSpeakersInfo():void {
      this.speakersService.getSpeaksers(3,40).subscribe({
       next: (speakers:any) =>{
@@ -30,7 +39,7 @@ export class SpeakersListComponent implements OnInit{
         return speakerItem;
        }
         );
-        
+        this.dataSource = new MatTableDataSource(this.speakers);
       },
       error: error =>
       console.log('Error',error)
@@ -38,4 +47,9 @@ export class SpeakersListComponent implements OnInit{
     );
    
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }

@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SpeakersListComponent } from './components/speakers-list/speakers-list.component';
 import { SpeakersDetailComponent } from './components/speakers-detail/speakers-detail.component';
+import { SpeakersService } from './services/speakers.service';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { SpeakersDetailComponent } from './components/speakers-detail/speakers-d
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
